@@ -7,7 +7,7 @@ class Musicians(models.Model):
     First_Name = models.CharField(max_length=30)
     Last_Name = models.CharField(max_length=30)
     Email = models.EmailField()
-    Phone_number = models.IntegerField()
+    Phone_number = models.BigIntegerField()
     Instrument_Type = models.CharField(max_length=40)
 
     def __str__(self):
