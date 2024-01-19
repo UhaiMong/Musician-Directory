@@ -13,15 +13,14 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous">
 
-    <title>Musician | Directory</title>
+    <title>Musician Directory</title>
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand"
-                href="{%url 'homepage'%}">Musician Directory</a>
+                href="#">Musician Directory</a>
             <button class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -37,36 +36,36 @@
                     <li class="nav-item">
                         <a class="nav-link active"
                             aria-current="page"
-                            href="{%url 'homepage'%}">Home</a>
+                            href="{% url 'homepage' %}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                            aria-current="page"
-                            href="{%url 'musician'%}">Musician</a>
+                            href="{% url 'musician' %}">Add Musician</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                            aria-current="page"
-                            href="{%url 'album'%}">Album</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                            href="/admin/">Admin Panel</a>
+                            href="{% url 'album' %}">Add Album</a>
                     </li>
 
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2"
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search">
+                <div class="d-flex">
+                    {% if user.is_authenticated %}
                     <button class="btn btn-outline-success"
-                        type="submit">Search</button>
-                </form>
+                        type="submit"><a class="text-light text-decoration-none"
+                            href="{% url 'logout' %}">Logout</a></button>
+                    {% else %}
+                    <button class="btn btn-outline-success"
+                        type="submit"><a class="text-light text-decoration-none"
+                            href="{% url 'login' %}">Login</a></button>
+                    <button class="btn btn-outline-success"
+                        type="submit"><a class="text-light text-decoration-none"
+                            href="{% url 'register' %}">Register</a></button>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </nav>
-    <div class="container bg-light">
+    <div class="container">
         {% block content %}
         {% endblock %}
     </div>
